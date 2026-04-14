@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 const supabase = createClient();
@@ -63,12 +64,17 @@ const LoginPage = () => {
 
           <div className="flex-1 border-t border-gray-600"></div>
         </div>
-        <button
-          onClick={handleGoogleLogin}
-          className="w-full py-2  border text-emerald-500 border-emerald-400 text-lg rounded-2xl"
-        >
-          login with google
-        </button>
+        <div className="text-center">
+          <div>
+            <span className="text-lg text-zinc-300">
+              Don&apos;t have account?
+            </span>
+            <span className="text-lg ml-2 text-emerald-400
+            ">
+              <Link href={"/auth/signup"}>Sign up</Link>
+            </span>
+          </div>
+        </div>
       </Card>
     </main>
   );

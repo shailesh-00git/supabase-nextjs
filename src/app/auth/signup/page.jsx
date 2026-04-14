@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 const supabase = createClient();
@@ -64,7 +65,9 @@ const SignUpPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && (
-            <div className="w-full text-center py-3 mb-5 border border-red-500 rounded-2xl text-red-500">{error}</div>
+            <div className="w-full text-center py-3 mb-5 border border-red-500 rounded-2xl text-red-500">
+              {error}
+            </div>
           )}
           <button className="w-full py-2 mt-5 hover:bg-emerald-600 duration-150 transition-all bg-emerald-400 text-lg rounded-2xl">
             {isLoading ? "Signing..." : "Sign up"}
@@ -77,12 +80,19 @@ const SignUpPage = () => {
 
           <div className="flex-1 border-t border-gray-600"></div>
         </div>
-        <button
-          onClick={handleGoogleSignup}
-          className="w-full py-2  border text-emerald-500 border-emerald-400 text-lg rounded-2xl"
-        >
-          signup with google
-        </button>
+        <div className="text-center">
+          <div>
+            <span className="text-lg text-zinc-300">
+              Already have a account?
+            </span>
+            <span
+              className="text-lg ml-2 text-emerald-400
+            "
+            >
+              <Link href={"/auth/login"}>Login</Link>
+            </span>
+          </div>
+        </div>
       </Card>
     </main>
   );
