@@ -4,8 +4,8 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-const supabase = createClient();
 const LoginPage = () => {
+  const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,6 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   }
-  function handleGoogleLogin() {}
   return (
     <main className="min-h-screen flex justify-center items-center bg-zinc-700">
       <Card className={`w-md bg-zinc-800 border border-zinc-950 p-8`}>
@@ -53,6 +52,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
           <button className="w-full py-2 mt-5 hover:bg-emerald-600 duration-150 transition-all bg-emerald-400 text-lg rounded-2xl">
             {isLoading ? "processing...." : "login"}
           </button>
@@ -69,8 +69,10 @@ const LoginPage = () => {
             <span className="text-lg text-zinc-300">
               Don&apos;t have account?
             </span>
-            <span className="text-lg ml-2 text-emerald-400
-            ">
+            <span
+              className="text-lg ml-2 text-emerald-400
+            "
+            >
               <Link href={"/auth/signup"}>Sign up</Link>
             </span>
           </div>
