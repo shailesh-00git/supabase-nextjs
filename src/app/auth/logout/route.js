@@ -22,5 +22,5 @@ export async function POST() {
     });
   }
 
-  redirect("/auth/login"); // ✅ Redirect after successful logout
+  redirect("/"); // ✅ Redirect after successful logout
 }
