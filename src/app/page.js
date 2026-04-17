@@ -22,9 +22,8 @@ export default async function Home() {
   const { data: posts } = await supabase
     .from("posts")
     .select("*")
-    .eq("user_id", user.id)
     .order("created_at", { ascending: false });
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <main className="min-h-screen w-full bg-zinc-800">
@@ -53,12 +52,19 @@ export default async function Home() {
         {posts && posts.length > 0 ? (
           <div className="grid gap-4 text-zinc-300">
             {posts.map((post) => (
-              <Card className={"bg-zinc-700 p-4"} key={post.id}>
-                <h2>{post.title}</h2>
-                {post.excerpt && <div>{post.excerpt}</div>}
-                {post.image && <div className="h-20 w-15">{post.image}</div>}
-                <p>{new Date(post.created_at).toLocaleDateString()}</p>
-              </Card>
+              <Link key={post.id} href={`/blog/${post.id}`}>
+                <Card className="p-6 bg-zinc-900 border-zinc-800 hover:border-emerald-600 transition-colors cursor-pointer">
+                  <h2 className="text-2xl font-bold text-emerald-400 mb-2">
+                    {post.title}
+                  </h2>
+                  {post.excerpt && (
+                    <p className="text-zinc-400 mb-4">{post.excerpt}</p>
+                  )}
+                  <p className="text-sm text-zinc-500">
+                    {new Date(post.created_at).toLocaleDateString()}
+                  </p>
+                </Card>
+              </Link>
             ))}
           </div>
         ) : (

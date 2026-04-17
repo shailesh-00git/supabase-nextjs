@@ -173,6 +173,7 @@ export default function EditorPage() {
         if (updateError) throw updateError;
 
         alert("Post updated successfully!");
+        //toaster
       } else {
         // Insert new post
         const { data, error: insertError } = await supabase
